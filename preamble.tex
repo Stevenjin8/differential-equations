@@ -1,0 +1,157 @@
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{textcomp}
+\usepackage[english]{babel}
+\usepackage{url}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{booktabs}
+\usepackage{enumitem}
+
+\pdfminorversion=8
+
+% Hide page number when page is empty
+\usepackage{emptypage}
+\usepackage{subcaption}
+\usepackage{multicol}
+\usepackage{xcolor}
+% Other font I sometimes use.
+% \usepackage{cmbright}
+
+% Math stuff
+\usepackage{amsmath, amsfonts, mathtools, amsthm, amssymb}
+% Fancy script capitals
+\usepackage{mathrsfs}
+\usepackage{cancel}
+% Bold math
+\usepackage{bm}
+
+% Command for short corrections
+% Usage: 1+1=\correct{3}{2}
+
+\definecolor{correct}{HTML}{009900}
+\newcommand\correct[2]{\ensuremath{\:}{\color{red}{#1}}\ensuremath{\to }{\color{correct}{#2}}\ensuremath{\:}}
+\newcommand\green[1]{{\color{correct}{#1}}}
+\newcommand\ex[1]{\section*{Exercise #1}}
+
+% horizontal rule
+\newcommand\hr{
+    \noindent\rule[0.5ex]{\linewidth}{0.5pt}
+}
+
+\newenvironment{cleanenum}
+{ \begin{enumerate}[topsep=0pt]
+    \setlength{\itemsep}{0pt}
+    \setlength{\parskip}{0pt}
+    \setlength{\parsep}{0pt}     }
+{ \end{enumerate}  }
+% hide parts
+\newcommand\hide[1]{}
+
+% si unitx
+\usepackage{siunitx}
+\sisetup{locale = US}
+
+% Environments
+\makeatother
+% For box around Definition, Theorem, \ldots
+\usepackage[linewidth=1pt, innerleftmargin=5pt, innerrightmargin=5pt]{mdframed}
+\mdfsetup{skipabove=0.5em, skipbelow=0.5em}
+\theoremstyle{definition}
+\newcounter{lecture}
+\setcounter{lecture}{0}
+\newcounter{axiom}
+\newtheorem{eg}{Example}[subsection]
+\newtheorem*{notation}{Notation}
+\newtheorem*{previouslyseen}{As previously seen}
+\newtheorem*{remark}{Remark}
+\newtheorem*{note}{Note}
+\newtheorem*{problem}{Problem}
+\newtheorem*{observe}{Observe}
+\newtheorem*{property}{Property}
+\newtheorem*{intuition}{Intuition}
+\newtheorem*{axiom}{Axiom}
+\newmdtheoremenv[nobreak=true]{prop}{Proposition}[subsection]
+\newmdtheoremenv[nobreak=true]{theorem}{Theorem}[subsection]
+\newmdtheoremenv[nobreak=true]{corollary}{Corollary}[subsection]
+\newmdtheoremenv[nobreak=true]{definition}{Definition}[subsection]
+\newmdtheoremenv[nobreak=true]{lemma}{Lemma}[subsection]
+\newmdtheoremenv[nobreak=true]{conjecture}{Conjecture}[subsection]
+
+
+\renewcommand{\thesubsection}{\arabic{lecture}}
+% End example and intermezzo environments with a small diamond (just like proof
+% environments end with a small square)
+\usepackage{etoolbox}
+\AtEndEnvironment{vb}{\null\hfill$\diamond$}%
+\AtEndEnvironment{intermezzo}{\null\hfill$\diamond$}%
+\AtEndEnvironment{opmerking}{\null\hfill$\diamond$}%
+
+% Fix some spacing
+% http://tex.stackexchange.com/questions/22119/how-can-i-change-the-spacing-before-theorems-with-amsthm
+\makeatletter
+\def\thm@space@setup{%
+  \thm@preskip=\parskip \thm@postskip=0pt
+}
+
+
+% \lecture starts a new lecture (les in dutch)
+%
+% Usage:
+% \lecture{1}{di 12 feb 2019 16:00}{Inleiding}
+%
+% This adds a section heading with the number / title of the lecture and a
+% margin paragraph with the date.
+
+\def\@lecture{Lecture \arabic{lecture}}%
+\usepackage{xifthen}
+\newcommand{\lecture}[1]{
+  \stepcounter{lecture}
+	\def\@date{#1}
+    \subsection*{\@lecture}
+	\setcounter{definition}{0}
+	\setcounter{eg}{0}
+	\setcounter{lemma}{0}
+	\setcounter{prop}{0}
+	\setcounter{conjecture}{0}
+	\setcounter{corollary}{0}
+	\setcounter{theorem}{0}
+	\setcounter{axiom}{0}
+}
+
+% These are the fancy headers
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+
+% LE: left even
+% RO: right odd
+% CE, CO: center even, center odd
+% My name for when I print my lecture notes to use for an open book exam.
+% \fancyhead[LE,RO]{Gilles Castel}
+
+\setlength{\headheight}{27.11469pt}
+\fancyhead[L]{\@lecture\\ \@date}
+\fancyhead[R]{Steven Jin}
+%
+\makeatother
+%
+% Todonotes and inline notes in fancy boxes
+\usepackage{tcolorbox}
+%
+% Make boxes breakable
+\tcbuselibrary{breakable}
+%
+% Figure support as explained in my blog post.
+\usepackage{import}
+\usepackage{xifthen}
+\usepackage{pdfpages}
+\usepackage{transparent}
+\newcommand{\incfig}[1]{%
+    \def\svgwidth{\columnwidth}
+    \import{./figures/}{#1.pdf_tex}
+}
+% Fix some stuff
+%http://tex.stackexchange.com/questions/76273/multiple-pdfs-with-page-group-included-in-a-single-page-warning
+\pdfsuppresswarningpagegroup=1
+
+
