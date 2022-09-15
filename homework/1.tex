@@ -4,15 +4,100 @@
 \date{Sep 12, 2022}
 
 \input{preamble.tex}
+
+\renewcommand\ex[1]{\section*{Exercise #1}}
+
 \title{Homework 1}
 
 \begin{document}
 \maketitle
 \setcounter{exercise_section}{1}
 
-\ex{1}
-\begin{enumerate}
-  \item
-\end{enumerate}
+\pagebreak
+
+\ex{4}
+First, we find
+\[
+  \int x\cos(2x) dx
+\]
+using integration by parts. Let $f(x) = x$ and $g'(x) = \cos(2x)$.
+The antiderivative of $\cos(2x)$ is $\frac12\sin(2x)$ and $f'(x) = 1$
+Applying the formula for integration by parts, we get
+\begin{align*}
+  \int x\cos(2x) dx
+  &= f(x)g(x) - \int f'(x)g(x) dx \\
+  &= x \frac12 \sin(2x) - \int 1 \cdot \frac12 \sin(2x) dx \\
+  &= x \frac12 \sin(2x) + \frac14 \cos(2x) dx + C.
+\end{align*}
+
+Now, we find the integral for
+\[
+  \int x^2 \sin(2x)dx.
+\]
+Once again, we use integration by parts.
+Let $f(x) = x^2$ and $g'(x) = \sin(2x)$.
+Using trig antiderivatives, we have $g(x) = -\frac12 \cos(2x)$.
+Applying the integration by parts formula and our earlier calculation, we get
+\begin{align*}
+  \int x^2 \sin(2x)dx
+  &= f(x)g(x) - \int f'(x)g(x) dx \\
+  &= -\frac12x^2\cos(2x) + \int x \cos(2x) dx \\
+  &= -\frac12x^2\cos(2x) + x \frac12 \sin(2x) + \frac14 \cos(2x) dx + C \\
+  &= \frac14(1 - 2x^2) \cos(2x) + x \frac12 \sin(2x) + C.
+\end{align*}
+
+\ex{10}
+
+We use integration for parts. Let
+\begin{align*}
+  f'(x) &= x^{\frac25} \\
+  g(x) &= \ln x.
+\end{align*}
+We can choose $f(x) = \frac57 x^{7/5}$ using the Power Law and find $g'(x) = 1/x$.
+Applying the integration by parts formula, we find that
+\begin{align*}
+  \int x^{\frac25} \ln x dx
+  &= f(x)g(x) - \int f'(x)g(x) dx \\
+  &= \frac57 x^{\frac75} \ln x - \int \frac1x \frac57 x^{\frac75} dx \\
+  &= \frac57 x^{\frac75} \ln x - \frac57 \int \frac1x x^{\frac75} dx \\
+  &= \frac57 x^{\frac75} \ln x - \frac57 \int x^{\frac25} dx \\
+  &= \frac57 x^{\frac75} \ln x - \frac57 \frac57 x^{\frac75} + C \text{   (Power Rule)} \\
+  &= \frac57 x^{\frac75} \ln x - \frac{ 25 }{ 49 } x^{\frac75} + C. \\
+  &= \left(\frac57 \ln x - \frac{ 25 }{ 49 }\right) x^{\frac75} + C.
+\end{align*}
+
+Now, we find the definite integral:
+\begin{align*}
+  \int\limits_{1}^{2} x^{2/5}\ln x dx
+  &= \left[\left(\frac57 \ln x - \frac{ 25 }{ 49 }\right) x^{\frac75}\right]_1^2 \\
+  &= \left(\frac57 \ln 2 - \frac{ 25 }{ 49 }\right) 2^{\frac75}
+  - \left(\left(\frac57 \ln 1 - \frac{ 25 }{ 49 }\right) 1^{\frac75}\right) \\
+  &= \left(\frac57 \ln 2 - \frac{ 25 }{ 49 }\right) 2^{\frac75}
+  + \frac{ 25 }{ 49 } \\
+  &\approx 0.4703577
+\end{align*}
+
+
+\ex{11}
+First, we work with the integrand. We can rewrite
+\begin{align*}
+  \frac{ x + 1 }{ x^2 - 4 } &= \frac{ x + 1 }{ (x + 2)(x - 2) } \\
+  &= \frac{ A(x - 2) + B(x + 2) }{ (x + 2)(x - 2) } \\
+  &= \frac{ A }{ x + 2 } + \frac{ B }{ x - 2 } 
+\end{align*}
+for some $A, B \in \mathbb{R}$. Setting $A = 1/4$ and $B = 3/4$, we see that
+\[
+  \frac{ (x - 2)/4  + 3(x + 2)/4}{  (x + 2)(x - 2)  }
+  = \frac{ x/4 + 3x/4 - 1/2 + 3/2}{  (x + 2)(x - 2)  }
+  = \frac{ x + 1 }{ (x + 2)(x - 2) }. \\
+\]
+Thus, we can write our integral as
+\begin{align*}
+  \int \frac{ x + 1 }{ x^2 - 4 } dx
+  &= \int \frac{ 1/4 }{ x - 2 } + \frac{ 3/4 }{ x + 2 } dx \\
+  &= \frac14 \int \frac{ 1 }{ x - 2 } dx + \frac34 \int \frac{ 1 }{ x + 2 } dx \\
+  & = \frac{ \ln (x - 2) }{ 4 } + \frac{ 3 \ln (x + 2) }{ 4 } + C.
+\end{align*}
+
 
 \end{document}

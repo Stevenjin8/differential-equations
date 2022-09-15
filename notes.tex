@@ -1,7 +1,7 @@
-\documentclass{article}[11]
-\author{Steven Jin}
-\date{Spring 2022}
-\title{Topology}
+\documentclass{article}[11, letterpaper]
+\author{Steven Jin Xuan}
+\date{Fall 2022}
+\title{Differential Equations}
 
 \input{./preamble.tex}
 \begin{document}
@@ -10,12 +10,129 @@
 
 \pagebreak
 \lecture{Sep 12, 2022}
-hello1
 
-\pagebreak
-\lecture{Sep 12, 2022}
+The question of diffeqs is about reversing derivatives.
+Usually, we know about movement in terms of its velocity, not its position.
 
-\pagebreak
-\lecture{Sep 12, 2022}
-hello4
+\begin{definition}[Differential Equation]
+  An equation tells us about a function in terms of its values and derivatives.
+  In other words, an identity over some region that connects a function with its derivatives.
+\end{definition}
+
+\begin{eg}
+  Given
+  \[
+    f'' = 2f' + f^2
+  \]
+  what can we say about $f$?
+  Does it move periodically as the planets around the sun?
+  Does it have a limit? Is it bounded?
+\end{eg}
+
+\begin{eg}
+  Let
+  \[
+    y = f(t)
+  \]
+  with
+  \[
+    y' = 12y
+  \]
+  for all $t \in \mathbb{R}$.
+  Let's guess that
+  \[
+    \phi(t) = 9 e^{12t}.
+  \]
+  Thus,
+  \[
+    \phi'(t) = 12 \cdot 9 \cdot e^{12t} = 12 \phi(t).
+  \]
+\end{eg}
+
+But how did we find the above solution?
+How do we find explicit solutions?
+Sometimes, we can find explicit solutions.
+But for most interesting diffeqs, we have to take a more qualitative approach.
+I.e., find properties of diffeqs.
+Finally, we can get close to the explicit solution via numerical approximation.
+How well can we approximate? Are error bounds guaranteed?
+
+Another issue is that the same differential equation can have many solutions.
+
+\begin{theorem}
+  Say we want to solve
+  \[
+    f'(t) = g(t).
+  \]
+  The solution is
+  \[
+    f(t) = \int g(t) dt
+  \]
+  if $g$ has an integral.
+  But what if we don't know how to integrate $g$?
+\end{theorem}
+
+\begin{eg}
+  Let
+  \[
+    f'(t) = f(t), f(0) = 3
+  \]
+  Differentiating, we get $f'/f = 1$.
+  Integrating both sides, we get
+  \[
+    \int \frac{ f'(t) }{ f(t) } dt = t + C.
+  \]
+  However, we know that
+  \[
+    \int \frac{ f'(t) }{ f(t) } dt = \ln f(t) + C.
+  \]
+  Thus,
+  \[
+    \ln f(t) = t + C \implies f(t) = e^{t + C}.
+  \]
+  Plugging this into our initial condition, we get $C = \ln3$.
+  So,
+  \[
+    f(t) = 3e^{t}.
+  \]
+\end{eg}
+
+\lecture{Sep 14, 2022}
+
+First, some review and history.
+Matrix algebra and differential equations are actually mathematically equivalent.
+The solution to differential equations are functions, not numbers.
+Focus will be on ODE.
+
+\begin{definition}[Order]
+  The highest derivative in a differential equation.
+\end{definition}
+
+The solution to a differential equation can be expressed as
+\[
+  F(t, y', y'', \ldots, y^{(n)}) = 0
+\]
+over some interval $I$.
+Thus, a candidate function $\phi$ must be differential $n$ times.
+Checking a proposed solution is easier. Coming up with one is harder.
+
+\begin{theorem}
+  If $f$ and $g$ have the same derivative then
+  \[
+    f(x) - g(x) = C
+  \]
+  for all $x$.
+\end{theorem}
+\begin{proof}
+  Let $h = f - g$.
+  It follows that $h' = (f - g)' = f' - g' = 0$.
+  Thus, $h$ must be a constant because if it weren't, then by the Mean Value Theorem, the derivative of $h$ wouldn't always be 0.
+  Thus,
+  \[
+    f(x) = g(x) + C
+  \]
+  for some $C \in \mathbb{R}$.
+\end{proof}
+
+
 \end{document}
